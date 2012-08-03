@@ -1,0 +1,25 @@
+diff --git a/crypto/wvx509.cc b/crypto/wvx509.cc
+index 93dae06..aa8af22 100644
+--- a/crypto/wvx509.cc
++++ b/crypto/wvx509.cc
+@@ -1157,7 +1157,7 @@ WvString WvX509::get_extension(int nid) const
+         
+         if (ext)
+         {
+-            X509V3_EXT_METHOD *method = X509V3_EXT_get(ext);
++            const X509V3_EXT_METHOD *method = X509V3_EXT_get(ext);
+             if (!method)
+             {
+                 WvDynBuf buf;
+diff --git a/utils/wvuid.cc b/utils/wvuid.cc
+index 7fa1035..709a484 100644
+--- a/utils/wvuid.cc
++++ b/utils/wvuid.cc
+@@ -33,6 +33,7 @@ wvuid_t wvgetuid()
+ 
+ #else // not WIN32
+ 
++#include <unistd.h>
+ 
+ WvString wv_username_from_uid(wvuid_t uid)
+ {
