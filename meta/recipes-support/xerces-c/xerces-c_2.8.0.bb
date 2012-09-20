@@ -7,6 +7,7 @@ DEPENDS = "icu"
 
 SRC_URI = "http://mirror.serversupportforum.de/apache/xerces/c/2/sources/xerces-c-src_2_8_0.tar.gz"
 S = "${WORKDIR}/xerces-c-src_2_8_0/src/xercesc"
+PR = "r1"
 
 inherit autotools pkgconfig
 
@@ -21,7 +22,7 @@ export CXX="${CCACHE}${HOST_PREFIX}g++"
 
 do_configure() {
 	gnu-configize
-	./runConfigure -plinux -c "${CC}" -x "${CXX}" -minmem -nsocket -tnative -rpthread -P${prefix} \
+	./runConfigure -plinux -c "${CC}" -x "${CXX}" -minmem -nsocket -ticu -rpthread -P${prefix} \
                     -C--build=${BUILD_SYS} \
                     -C--host=${HOST_SYS} \
                     -C--target=${TARGET_SYS} \
